@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -39,19 +41,19 @@ public class Main {
         for(int a=0;a<=nums.length-1;a++) {
             if (nums[a] <= small) {
                 small = nums[a];}} //end for
-         return small;}//end methods
+        return small;}//end methods
 /*2 - Write a Java method that check if the entered number is
 negative or positive or zero.
 */
 //--------------------------Exercise 2---------------------------------
 
-public static void typenum(int number){
-    if(number>0){
-        System.out.println("The Number is Positive");
-    }else if(number<0){System.out.println("The Number is Negative");}
-    else{System.out.println("The Number is Zero");}
+    public static void typenum(int number){
+        if(number>0){
+            System.out.println("The Number is Positive");
+        }else if(number<0){System.out.println("The Number is Negative");}
+        else{System.out.println("The Number is Zero");}
 
-}
+    }
 
 /*- Write a Java method to check whether a string is a valid password.
 Password rules:
@@ -61,26 +63,28 @@ A password must contain at least two digits*/
 
 //--------------------------Exercise 3---------------------------------
 
- public static boolean valid(String pass){
-     boolean check=true;
-    // String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+    public static boolean valid(String pass){
+        boolean check=true;
+        String pattern = "^(?=.*[0-9])"+ "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m=p.matcher(pass);
+        int countD=0;//A password must contain at least two digits
+        if(pass.length()>=10){//A password must have at least eight characters.
+if(m.matches()){
+            for(int s=0;s<pass.length();s++){
+                if(pass.toUpperCase().charAt(s)>='A'&& pass.toUpperCase().charAt(s)<='Z'){
+                    check=true;}
+                if (pass.charAt(s)>='0'&&pass.charAt(s)<='9'){
+                    countD+=1;}}
+            if(countD>=2){check=true;}
+            else {check=false;}
+        }
+        else check=false;}
+        else return false;//if length less than 10
+        return check;
 
-     int countD=0;//A password must contain at least two digits
-     if(pass.length()>=10){//A password must have at least eight characters.
 
-     for(int s=0;s<pass.length();s++){
-         if(pass.toUpperCase().charAt(s)>='A'&& pass.toUpperCase().charAt(s)<='Z'){
-            check=true;}
-         if (pass.charAt(s)>='0'&&pass.charAt(s)<='9'){
-             countD+=1;}}
-     if(countD>=2){check=true;}
-     else {check=false;}
-     }
-     else return false;//if length less than 10
-     return check;
-
-
- }
+    }
 
 
 }
