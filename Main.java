@@ -9,7 +9,10 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("-------------------------Exercise 1--------------------------------!");
 //--------------------------Exercise 1---------------------------------
-        int [] nums={25,37,29};
+        int a,b,c;
+
+        System.out.println("Enter number");
+        int [] nums={input.nextInt(),input.nextInt(),input.nextInt()};
         System.out.println("The Smallest number is "+smallest(nums));
         System.out.println("------Exercise 2-------");
         System.out.println("Enter number!");
